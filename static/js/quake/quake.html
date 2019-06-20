@@ -8,12 +8,14 @@
 		overflow: hidden;
 		cursor: move;
 		width: 100%;
-		height: 470px;
+		height: 480px;
 		margin-bottom: 32px;
 	}
 </style>
 
-<div id="quake-container"></div>
+<div id="quake-container">
+	<noscript>Enable Javascript to view this</noscript>
+</div>
 
 <script src="/static/js/three.js/build/three.min.js"></script>
 <script src="/static/js/three.js/renderers/WebGLDeferredRenderer.js"></script>
@@ -39,7 +41,12 @@
 
 		let width = container.clientWidth;
 		let height = container.clientHeight;
-		if (height > width) height = width;
+		if (height > width) {
+			height = width;
+			container.style.height = width+"px";
+		} else {
+			container.style.height = "480px";
+		}
 
 		camera = new THREE.PerspectiveCamera(55, width / height, 280, 800);
 		camera.position.x = 0;
@@ -85,7 +92,12 @@
 	{
 		let width = container.clientWidth;
 		let height = container.clientHeight;
-		if (height > width) height = width;
+		if (height > width) {
+			height = width;
+			container.style.height = width+"px";
+		} else {
+			container.style.height = "480px";
+		}
 		camera.aspect = width / height;
 		camera.updateProjectionMatrix();
 		renderer.setSize(width, height);
